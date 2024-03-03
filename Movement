@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f; // Speed at which the character moves
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Get input from the keyboard
+        float horizontalInput = 0f;
+        float verticalInput = 0f;
+
+        if (Input.GetKey(KeyCode.W)) // Move forward (W key)
+            verticalInput = 1f;
+        else if (Input.GetKey(KeyCode.S)) // Move backward (S key)
+            verticalInput = -1f;
+
+        if (Input.GetKey(KeyCode.D)) // Move right (D key)
+            horizontalInput = 1f;
+        else if (Input.GetKey(KeyCode.A)) // Move left (A key)
+            horizontalInput = -1f;
+
+        // Calculate the movement direction
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed * Time.deltaTime;
+
+        // Move the character
+        transform.Translate(movement);
+    }
+}
+
